@@ -5,7 +5,8 @@
 		"source.fixAll.eslint": "explicit"
 	},
 	"[markdown]": {
-		"editor.wordWrap": "on"
+		"editor.wordWrap": "on",
+		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
 	},
 	"prettier.documentSelectors": ["**/*.astro"],
 	"eslint.probe": [
