@@ -190,3 +190,113 @@ app.get("/", (c) => {
 ### 总结
 
 Hono的Context对象提供了一个简单而强大的接口，用于处理HTTP请求和响应。通过利用它的各种方法，你可以轻松地设置响应头、状态码、返回不同类型的响应，以及处理重定向和错误。这让Web开发变得更加高效和灵活。
+
+## HonoRequest
+
+在Hono框架中，`HonoRequest`是一个重要的对象，它封装了标准的`Request`对象，提供了一系列便捷的方法来处理HTTP请求。下面我们用更通俗易懂的方式来讲解`HonoRequest`的主要功能。
+
+### 获取路径参数（param）
+
+当你定义路由时，可能会在URL路径中包含一些参数，`HonoRequest`允许你轻松获取这些参数的值。
+
+```typescript
+// 获取单个参数
+app.get('/entry/:id', (c) => {
+  const id = c.req.param('id')
+  // 使用id做一些事情...
+})
+
+// 一次性获取所有参数
+app.get('/entry/:id/comment/:commentId', (c) => {
+  const { id, commentId } = c.req.param()
+  // 使用id和commentId做一些事情...
+})
+```
+
+### 获取查询字符串（query）
+
+你可以使用`query`方法来获取URL查询字符串中的参数。
+
+```typescript
+// 获取单个查询参数
+app.get('/search', (c) => {
+  const query = c.req.query('q')
+  // 使用查询参数做一些事情...
+})
+
+// 一次性获取所有查询参数
+app.get('/search', (c) => {
+  const { q, limit, offset } = c.req.query()
+  // 使用这些查询参数做一些事情...
+})
+```
+
+### 获取多个查询字符串（queries）
+
+如果你的URL中有多个相同名称的查询参数，可以使用`queries`方法来获取它们的数组。
+
+```typescript
+app.get('/search', (c) => {
+  const tags = c.req.queries('tags') // tags将是一个字符串数组
+  // 使用tags做一些事情...
+})
+```
+
+### 获取请求头（header）
+
+通过`header`方法可以获取请求中的特定头信息。
+
+```typescript
+app.get('/', (c) => {
+  const userAgent = c.req.header('User-Agent')
+  // 使用userAgent做一些事情...
+})
+```
+
+### 解析请求体（parseBody）
+
+`parseBody`方法支持解析`multipart/form-data`或`application/x-www-form-urlencoded`类型的请求体。
+
+```typescript
+app.post('/entry', async (c) => {
+  const body = await c.req.parseBody()
+  // 使用请求体中的数据做一些事情...
+})
+```
+
+这个方法支持单文件和多文件的解析。
+
+### 解析JSON请求体（json）
+
+如果请求体是`application/json`类型，可以使用`json`方法来解析。
+
+```typescript
+app.post('/entry', async (c) => {
+  const body = await c.req.json()
+  // 使用解析后的JSON对象做一些事情...
+})
+```
+
+### 解析文本请求体（text）
+
+对于`text/plain`类型的请求体，可以使用`text`方法来解析。
+
+```typescript
+app.post('/entry', async (c) => {
+  const body = await c.req.text()
+  // 使用解析后的文本做一些事情...
+})
+```
+
+### 其他有用的方法
+
+- `arrayBuffer()`：将请求体解析为`ArrayBuffer`。
+- `valid()`：获取经过验证的数据。
+- `routePath()`：获取处理程序中注册的路径。
+- `matchedRoutes()`：返回处理程序中匹配的路由，对于调试很有用。
+- `path`：获取请求的路径名。
+- `url`：获取请求的URL字符串。
+- `method`：获取请求的方法名（如GET、POST）。
+- `raw`：获取原始的`Request`对象，适用于需要访问特定平台特性的场景，如Cloudflare Workers。
+
+通过这些方法，`HonoRequest`为处理HTTP请求提供了强大而灵活的功能。
