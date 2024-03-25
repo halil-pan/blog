@@ -37,5 +37,5 @@ bun run --bun vite
 echo "console.log('hello')" | bun run
 
 # reduce memory usage at the cost of performance
-bun run --low-memory index.tsx
+bun --smol run index.tsx
 ```
