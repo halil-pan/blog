@@ -3,7 +3,6 @@ title: "try using hono"
 description: "a small, simple, and ultrafast web framework for the Edges"
 publishDate: "19 March 2024"
 tags: ["nodejs", "hono"]
-draft: true
 ---
 
 ## API
