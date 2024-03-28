@@ -67,3 +67,44 @@ console.log(db.query("select * from users LIMIT 1").get());
 Bun 无需额外配置就可以直接执行 `.ts` `.tsx` 文件，执行前转译的额外开销微不足道，可以将 TypeScript 代码直接用于生产环境。
 
 如果 `tsconfig.json` 有配置 `compilerOptions` 的 `baseUrl` 或 `paths`，Bun 运行时的模块解析会基于这些配置完成路径映射。
+
+## JSX
+
+Bun 开箱支持 `.jsx` `.tsx` 文件。
+Bun 会自动读取 `tsconfig.json` `jsconfig.json` 中的配置来决定如何转译 JSX，如果想避免使用这些，也可以定义在 bunfig.toml 中。
+
+```json
+{
+  "jsx": "react-jsxdev", // "react" | "react-jsx" | "react-jsxdev" | "preserve"
+  "jsxFactory": "h", // default: createElement
+  "jsxFragment": "MyFragment", // default: Fragment
+  "jsxImportSource": "preact" // default: react
+}
+
+```tsx
+import { jsxDEV, MyFragment, h } from "preact/jsx-dev-runtime";
+
+jsxDEV(
+  "Box",
+  { width: 5, children: "Hello" },
+  undefined,
+  false,
+  undefined,
+  this,
+);
+
+h(MyFragment, null, "Hello");
+```
+
+Bun 运行时支持 JSX prop punning 语法简写
+
+```tsx
+function Div(props: {className: string;}) {
+  const {className} = props;
+
+  // without punning
+  return <div className={className} />;
+  // with punning
+  return <div {className} />;
+}
+```
