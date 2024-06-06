@@ -95,8 +95,8 @@ devDependencies:
     specifier: ^5.0.0
     version: 5.0.0(eslint@8.57.0)
   eslint-plugin-perfectionist:
-    specifier: ^2.7.0
-    version: 2.7.0(astro-eslint-parser@0.16.3)(eslint@8.57.0)(typescript@5.4.5)
+    specifier: ^2.10.0
+    version: 2.10.0(astro-eslint-parser@0.16.3)(eslint@8.57.0)(typescript@5.4.3)
   eslint-plugin-regexp:
     specifier: ^2.6.0
     version: 2.6.0(eslint@8.57.0)
