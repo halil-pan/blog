@@ -1,6 +1,6 @@
 ---
 title: Algorithms Baisc
-description: ""
+description: "Algorithms Baisc and algorithms Baisc and algorithms Baisc and algorithms Baisc and algorithms Baisc and algorithms"
 publishDate: 06 June 2024
 tags: [algorithms]
 draft: false
