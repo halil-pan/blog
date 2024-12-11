@@ -3518,7 +3518,7 @@ packages:
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
       '@jridgewell/sourcemap-codec': 1.4.15
-      '@typescript-eslint/types': 7.15.0
+      '@typescript-eslint/types': 7.18.0
       astro-eslint-parser: 1.0.2(typescript@5.5.3)
       eslint: 8.57.0
       eslint-compat-utils: 0.5.0(eslint@8.57.0)
